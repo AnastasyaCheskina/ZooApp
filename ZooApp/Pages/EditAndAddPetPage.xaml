@@ -35,11 +35,23 @@
                     <ComboBox FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Дополнительные сведения" FontSize="20" Margin="0 0 0 22">
-                    <StackPanel Orientation="Vertical">
-                        <TextBox MaxLines="1" FontSize="16" Padding="5" Margin="0 0 0 10"/>
-                        <DatePicker FontSize="16" Padding="5" Margin="0 0 0 10"/>
-                        <DatePicker FontSize="16" Padding="5"/>
-                    </StackPanel>
+                    <ComboBox FontSize="16" Padding="5">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <GroupBox Header="Нормальная температура / страна зимовки" FontSize="20" Margin="0 0 0 22">
+                                        <TextBox IsReadOnly="True" MaxLines="1" FontSize="16" Padding="5"/>
+                                    </GroupBox>
+                                    <GroupBox Header="Дата ухода в спячку / улета" FontSize="20" Margin="0 0 0 22">
+                                        <DatePickerTextBox IsReadOnly="True" FontSize="16" Padding="5"/>
+                                    </GroupBox>
+                                    <GroupBox Header="Дата выхода из спячки / прилета" FontSize="20" Margin="0 0 0 22">
+                                        <DatePickerTextBox IsReadOnly="True" FontSize="16" Padding="5"/>
+                                    </GroupBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </GroupBox>
                 <Grid>
                     <Grid.ColumnDefinitions>
