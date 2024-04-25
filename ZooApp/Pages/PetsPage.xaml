@@ -1,0 +1,28 @@
+﻿<Page x:Class="ZooApp.Pages.PetsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ZooApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PetsPage">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Питомцы зоопарка" FontSize="24" FontWeight="Bold" Margin="0 0 0 22"/>
+            <Button x:Name="addNewPetBtn" Click="addNewPetBtn_Click" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Добавить нового питомца" Margin="0 0 0 22"/>
+            <ComboBox FontSize="16" Padding="5" Margin="0 0 0 22"/>
+            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                            <TextBlock FontSize="16" Margin="0 0 0 16"/>
+                            <Button Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Page>
