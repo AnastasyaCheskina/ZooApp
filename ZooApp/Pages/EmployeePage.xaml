@@ -12,12 +12,12 @@
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Сотрудники зоопарка" FontSize="24" FontWeight="Bold" Margin="0 0 0 22"/>
             <Button Padding="20" x:Name="addNewEmployeeBtn" Click="addNewEmployeeBtn_Click" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Добавить нового сотрудника" Margin="0 0 0 22"/>
-            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox Height="270" ItemsSource="{Binding Employees}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                            <TextBlock FontSize="16" Margin="0 0 0 16"/>
-                            <Button Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
+                            <TextBlock Text="{Binding name}" Width="250" FontSize="16" Margin="0 0 0 16"/>
+                            <Button Tag="{Binding id}" x:Name="editEmployeeBtn" Click="editEmployeeBtn_Click" Width="185" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a574ccc6cecc4b9ab8f2abdecdf736ae" Name="Diagram1">
+        <EntityTypeShape EntityType="ZooBaseModel.AllSex" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.BirdInfo" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.Employee" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.Food" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.Home" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.MarriedStatu" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.Pet" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.ReptileInfo" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.sysdiagram" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.TypeFood" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZooBaseModel.TypePet" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <AssociationConnector Association="ZooBaseModel.FK_Pets_AllSex" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Pets_BirdInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Employees_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Employees_MarriedStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Pets_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Pets_Employees1" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Food_Food" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Pets_Food" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Pets_Home" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Pets_ReptileInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="ZooBaseModel.FK_Pets_TypePet" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -24,11 +24,24 @@ namespace ZooApp.Pages
         public EmployeePage()
         {
             InitializeComponent();
+            DataContext = new EmployeeViewModel();
         }
 
         private void addNewEmployeeBtn_Click(object sender, RoutedEventArgs e)
         {
             ViewModelBase.MainFrame.Navigate(new EditAndAddEmployeePage());
+        }
+
+        private void editEmployeeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            int id = Convert.ToInt32(button.Tag);
+            var employee = ViewModelBase.database.Employees.FirstOrDefault(x=>x.id == id);
+            if (employee != null)
+            {
+                ViewModelBase.MainFrame.Navigate(new EditAndAddEmployeePage(employee));
+            }
+            else MessageBox.Show("Что-то пошло не так");
         }
     }
 }

@@ -12,27 +12,27 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical">
                 <GroupBox Header="Имя сотрудника" FontSize="20" Margin="0 0 0 22">
-                    <TextBox MaxLines="1" FontSize="16" Padding="5"/>
+                    <TextBox Text="{Binding Employee.name}" MaxLines="1" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Дата рождения сотрудника" FontSize="20" Margin="0 0 0 22">
-                    <DatePicker FontSize="16" Padding="5"/>
+                    <DatePicker SelectedDate="{Binding Employee.birthday}" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Телефон сотрудника" FontSize="20" Margin="0 0 0 22">
-                    <TextBox MaxLines="1" FontSize="16" Padding="5"/>
+                    <TextBox MaxLines="1" Text="{Binding Employee.phone}" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Семейное положение" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5"/>
+                    <ComboBox ItemsSource="{Binding MarriedStatu}" SelectedValue="{Binding IdStatus, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Брак с другим сотрудником" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5"/>
+                    <ComboBox ItemsSource="{Binding Employees}" SelectedValue="{Binding IdEmployee, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Template="{StaticResource NoMouseOverButtonTemplate}" Content="Сохранить" Grid.Column="0" Margin="5"/>
-                    <Button Template="{StaticResource NoMouseOverButtonTemplate}" Content="Удалить" Grid.Column="1" Margin="5"/>
+                    <Button x:Name="saveBtn" Click="saveBtn_Click" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Сохранить" Grid.Column="0" Margin="5"/>
+                    <Button x:Name="deleteBtn" Click="deleteBtn_Click" IsEnabled="{Binding IsVisible}" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Удалить" Grid.Column="1" Margin="5"/>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

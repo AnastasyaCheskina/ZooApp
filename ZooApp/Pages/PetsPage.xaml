@@ -12,13 +12,13 @@
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Питомцы зоопарка" FontSize="24" FontWeight="Bold" Margin="0 0 0 22"/>
             <Button x:Name="addNewPetBtn" Click="addNewPetBtn_Click" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Добавить нового питомца" Margin="0 0 0 22"/>
-            <ComboBox FontSize="16" Padding="5" Margin="0 0 0 22"/>
-            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ComboBox ItemsSource="{Binding Types}" SelectedValue="{Binding IdType, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5" Margin="0 0 0 22"/>
+            <ListBox Height="230" ItemsSource="{Binding Pets}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                            <TextBlock FontSize="16" Margin="0 0 0 16"/>
-                            <Button Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
+                            <TextBlock Width="250" Text="{Binding name}" FontSize="16" Margin="0 0 0 16"/>
+                            <Button Width="185" Tag="{Binding id}" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" x:Name="editPetBtn" Click="editPetBtn_Click" Content="Редактировать"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

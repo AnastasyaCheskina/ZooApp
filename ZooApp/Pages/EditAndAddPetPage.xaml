@@ -11,55 +11,36 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical">
                 <GroupBox Header="Имя питомца" FontSize="20" Margin="0 0 0 22">
-                    <TextBox MaxLines="1" FontSize="16" Padding="5"/>
+                    <TextBox MaxLines="1" Text="{Binding Pet.name, Mode=TwoWay}" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Дата рождения питомца" FontSize="20" Margin="0 0 0 22">
-                    <DatePicker FontSize="16" Padding="5"/>
+                    <DatePicker Name="birthdayPet" FontSize="16" Padding="5" SelectedDate="{Binding Pet.birthday, Mode=TwoWay}"/>
                 </GroupBox>
                 <GroupBox Header="Пол питомца" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5"/>
+                    <ComboBox ItemsSource="{Binding AllSexes}" SelectedValue="{Binding IdSex, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Тип питомца" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5"/>
+                    <ComboBox ItemsSource="{Binding TypePet}" SelectedValue="{Binding IdTypePet, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Рацион питомца" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5"/>
+                    <ComboBox ItemsSource="{Binding Foods}" SelectedValue="{Binding IdFood, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Место обитания питомца" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5"/>
+                    <ComboBox ItemsSource="{Binding Homes}" SelectedValue="{Binding IdHome, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Смотритель" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5"/>
+                    <ComboBox ItemsSource="{Binding Employees}" SelectedValue="{Binding IdSmotritel, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Ветеринар" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5"/>
-                </GroupBox>
-                <GroupBox Header="Дополнительные сведения" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <GroupBox Header="Нормальная температура / страна зимовки" FontSize="20" Margin="0 0 0 22">
-                                        <TextBox IsReadOnly="True" MaxLines="1" FontSize="16" Padding="5"/>
-                                    </GroupBox>
-                                    <GroupBox Header="Дата ухода в спячку / улета" FontSize="20" Margin="0 0 0 22">
-                                        <DatePickerTextBox IsReadOnly="True" FontSize="16" Padding="5"/>
-                                    </GroupBox>
-                                    <GroupBox Header="Дата выхода из спячки / прилета" FontSize="20" Margin="0 0 0 22">
-                                        <DatePickerTextBox IsReadOnly="True" FontSize="16" Padding="5"/>
-                                    </GroupBox>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding Employees}" SelectedValue="{Binding IdDoctor, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Template="{StaticResource NoMouseOverButtonTemplate}" Content="Сохранить" Grid.Column="0" Margin="5"/>
-                    <Button Template="{StaticResource NoMouseOverButtonTemplate}" Content="Удалить" Grid.Column="1" Margin="5"/> 
+                    <Button x:Name="saveBtn" Tag="{Binding Pet.id}" Click="saveBtn_Click" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Сохранить" Grid.Column="0" Margin="5"/>
+                    <Button IsEnabled="{Binding IsNew}" Tag="{Binding Pet.id}" x:Name="deleteBtn" Click="deleteBtn_Click"  Template="{StaticResource NoMouseOverButtonTemplate}" Content="Удалить" Grid.Column="1" Margin="5"/> 
                 </Grid>
             </StackPanel>
         </ScrollViewer>

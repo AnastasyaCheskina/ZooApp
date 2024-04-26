@@ -1,0 +1,750 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ZooBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AllSex">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BirdInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countryName" Type="varchar" MaxLength="50" />
+          <Property Name="firstDate" Type="date" />
+          <Property Name="secondDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="birthday" Type="date" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="id_married_status" Type="int" Nullable="false" />
+          <Property Name="id_wife_hasbend" Type="int" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="id_type_food" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Home">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="MarriedStatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="birthday" Type="date" />
+          <Property Name="id_sex" Type="int" Nullable="false" />
+          <Property Name="id_type" Type="int" />
+          <Property Name="id_food" Type="int" Nullable="false" />
+          <Property Name="id_home" Type="int" Nullable="false" />
+          <Property Name="id_smotritel" Type="int" Nullable="false" />
+          <Property Name="id_doctor" Type="int" Nullable="false" />
+          <Property Name="id_info_bird" Type="int" />
+          <Property Name="id_info_reptile" Type="int" />
+        </EntityType>
+        <EntityType Name="ReptileInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="normalTemperature" Type="varchar" MaxLength="50" />
+          <Property Name="firstDate" Type="date" />
+          <Property Name="secondDate" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeFood">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypePet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Employees_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="id_wife_hasbend" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_MarriedStatus">
+          <End Role="MarriedStatus" Type="Self.MarriedStatus" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarriedStatus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="id_married_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Food">
+          <End Role="TypeFood" Type="Self.TypeFood" Multiplicity="1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFood">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="id_type_food" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_AllSex">
+          <End Role="AllSex" Type="Self.AllSex" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AllSex">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_BirdInfo">
+          <End Role="BirdInfo" Type="Self.BirdInfo" Multiplicity="0..1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BirdInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_info_bird" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_smotritel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_Employees1">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_doctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_food" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_Home">
+          <End Role="Home" Type="Self.Home" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Home">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_home" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_ReptileInfo">
+          <End Role="ReptileInfo" Type="Self.ReptileInfo" Multiplicity="0..1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReptileInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_info_reptile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_TypePet">
+          <End Role="TypePet" Type="Self.TypePet" Multiplicity="0..1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypePet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ZooBaseModelContainer">
+          <EntitySet Name="AllSex" EntityType="Self.AllSex" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BirdInfo" EntityType="Self.BirdInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Home" EntityType="Self.Home" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarriedStatus" EntityType="Self.MarriedStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pets" EntityType="Self.Pets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReptileInfo" EntityType="Self.ReptileInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeFood" EntityType="Self.TypeFood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypePet" EntityType="Self.TypePet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employees_Employees" Association="Self.FK_Employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_MarriedStatus" Association="Self.FK_Employees_MarriedStatus">
+            <End Role="MarriedStatus" EntitySet="MarriedStatus" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Food" Association="Self.FK_Food_Food">
+            <End Role="TypeFood" EntitySet="TypeFood" />
+            <End Role="Food" EntitySet="Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_AllSex" Association="Self.FK_Pets_AllSex">
+            <End Role="AllSex" EntitySet="AllSex" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_BirdInfo" Association="Self.FK_Pets_BirdInfo">
+            <End Role="BirdInfo" EntitySet="BirdInfo" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_Employees" Association="Self.FK_Pets_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_Employees1" Association="Self.FK_Pets_Employees1">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_Food" Association="Self.FK_Pets_Food">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_Home" Association="Self.FK_Pets_Home">
+            <End Role="Home" EntitySet="Home" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_ReptileInfo" Association="Self.FK_Pets_ReptileInfo">
+            <End Role="ReptileInfo" EntitySet="ReptileInfo" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_TypePet" Association="Self.FK_Pets_TypePet">
+            <End Role="TypePet" EntitySet="TypePet" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ZooBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AllSex">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pets" Relationship="Self.FK_Pets_AllSex" FromRole="AllSex" ToRole="Pets" />
+        </EntityType>
+        <EntityType Name="BirdInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstDate" Type="DateTime" Precision="0" />
+          <Property Name="secondDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Pets" Relationship="Self.FK_Pets_BirdInfo" FromRole="BirdInfo" ToRole="Pets" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="birthday" Type="DateTime" Precision="0" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_married_status" Type="Int32" Nullable="false" />
+          <Property Name="id_wife_hasbend" Type="Int32" />
+          <NavigationProperty Name="Employees1" Relationship="Self.FK_Employees_Employees" FromRole="Employees" ToRole="Employees1" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employees_Employees" FromRole="Employees1" ToRole="Employees" />
+          <NavigationProperty Name="MarriedStatu" Relationship="Self.FK_Employees_MarriedStatus" FromRole="Employees" ToRole="MarriedStatus" />
+          <NavigationProperty Name="Pets" Relationship="Self.FK_Pets_Employees" FromRole="Employees" ToRole="Pets" />
+          <NavigationProperty Name="Pets1" Relationship="Self.FK_Pets_Employees1" FromRole="Employees" ToRole="Pets" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_type_food" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TypeFood" Relationship="Self.FK_Food_Food" FromRole="Food" ToRole="TypeFood" />
+          <NavigationProperty Name="Pets" Relationship="Self.FK_Pets_Food" FromRole="Food" ToRole="Pets" />
+        </EntityType>
+        <EntityType Name="Home">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pets" Relationship="Self.FK_Pets_Home" FromRole="Home" ToRole="Pets" />
+        </EntityType>
+        <EntityType Name="MarriedStatu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_MarriedStatus" FromRole="MarriedStatus" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="birthday" Type="DateTime" Precision="0" />
+          <Property Name="id_sex" Type="Int32" Nullable="false" />
+          <Property Name="id_type" Type="Int32" />
+          <Property Name="id_food" Type="Int32" Nullable="false" />
+          <Property Name="id_home" Type="Int32" Nullable="false" />
+          <Property Name="id_smotritel" Type="Int32" Nullable="false" />
+          <Property Name="id_doctor" Type="Int32" Nullable="false" />
+          <Property Name="id_info_bird" Type="Int32" />
+          <Property Name="id_info_reptile" Type="Int32" />
+          <NavigationProperty Name="AllSex" Relationship="Self.FK_Pets_AllSex" FromRole="Pets" ToRole="AllSex" />
+          <NavigationProperty Name="BirdInfo" Relationship="Self.FK_Pets_BirdInfo" FromRole="Pets" ToRole="BirdInfo" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Pets_Employees" FromRole="Pets" ToRole="Employees" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Pets_Employees1" FromRole="Pets" ToRole="Employees" />
+          <NavigationProperty Name="Food" Relationship="Self.FK_Pets_Food" FromRole="Pets" ToRole="Food" />
+          <NavigationProperty Name="Home" Relationship="Self.FK_Pets_Home" FromRole="Pets" ToRole="Home" />
+          <NavigationProperty Name="ReptileInfo" Relationship="Self.FK_Pets_ReptileInfo" FromRole="Pets" ToRole="ReptileInfo" />
+          <NavigationProperty Name="TypePet" Relationship="Self.FK_Pets_TypePet" FromRole="Pets" ToRole="TypePet" />
+        </EntityType>
+        <EntityType Name="ReptileInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="normalTemperature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstDate" Type="DateTime" Precision="0" />
+          <Property Name="secondDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Pets" Relationship="Self.FK_Pets_ReptileInfo" FromRole="ReptileInfo" ToRole="Pets" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeFood">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Foods" Relationship="Self.FK_Food_Food" FromRole="TypeFood" ToRole="Food" />
+        </EntityType>
+        <EntityType Name="TypePet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pets" Relationship="Self.FK_Pets_TypePet" FromRole="TypePet" ToRole="Pets" />
+        </EntityType>
+        <Association Name="FK_Pets_AllSex">
+          <End Role="AllSex" Type="Self.AllSex" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AllSex">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_BirdInfo">
+          <End Role="BirdInfo" Type="Self.BirdInfo" Multiplicity="0..1" />
+          <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BirdInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_info_bird" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="id_wife_hasbend" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_MarriedStatus">
+          <End Role="MarriedStatus" Type="Self.MarriedStatu" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarriedStatus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="id_married_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_smotritel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_Employees1">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_doctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Food">
+          <End Role="TypeFood" Type="Self.TypeFood" Multiplicity="1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFood">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="id_type_food" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_food" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_Home">
+          <End Role="Home" Type="Self.Home" Multiplicity="1" />
+          <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Home">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_home" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_ReptileInfo">
+          <End Role="ReptileInfo" Type="Self.ReptileInfo" Multiplicity="0..1" />
+          <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReptileInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_info_reptile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pets_TypePet">
+          <End Role="TypePet" Type="Self.TypePet" Multiplicity="0..1" />
+          <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypePet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="id_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZooBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AllSexes" EntityType="Self.AllSex" />
+          <EntitySet Name="BirdInfoes" EntityType="Self.BirdInfo" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="Homes" EntityType="Self.Home" />
+          <EntitySet Name="MarriedStatus" EntityType="Self.MarriedStatu" />
+          <EntitySet Name="Pets" EntityType="Self.Pet" />
+          <EntitySet Name="ReptileInfoes" EntityType="Self.ReptileInfo" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TypeFoods" EntityType="Self.TypeFood" />
+          <EntitySet Name="TypePets" EntityType="Self.TypePet" />
+          <AssociationSet Name="FK_Pets_AllSex" Association="Self.FK_Pets_AllSex">
+            <End Role="AllSex" EntitySet="AllSexes" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_BirdInfo" Association="Self.FK_Pets_BirdInfo">
+            <End Role="BirdInfo" EntitySet="BirdInfoes" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Employees" Association="Self.FK_Employees_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_MarriedStatus" Association="Self.FK_Employees_MarriedStatus">
+            <End Role="MarriedStatus" EntitySet="MarriedStatus" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_Employees" Association="Self.FK_Pets_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_Employees1" Association="Self.FK_Pets_Employees1">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Food" Association="Self.FK_Food_Food">
+            <End Role="TypeFood" EntitySet="TypeFoods" />
+            <End Role="Food" EntitySet="Foods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_Food" Association="Self.FK_Pets_Food">
+            <End Role="Food" EntitySet="Foods" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_Home" Association="Self.FK_Pets_Home">
+            <End Role="Home" EntitySet="Homes" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_ReptileInfo" Association="Self.FK_Pets_ReptileInfo">
+            <End Role="ReptileInfo" EntitySet="ReptileInfoes" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pets_TypePet" Association="Self.FK_Pets_TypePet">
+            <End Role="TypePet" EntitySet="TypePets" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ZooBaseModelContainer" CdmEntityContainer="ZooBaseEntities">
+          <EntitySetMapping Name="AllSexes">
+            <EntityTypeMapping TypeName="ZooBaseModel.AllSex">
+              <MappingFragment StoreEntitySet="AllSex">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BirdInfoes">
+            <EntityTypeMapping TypeName="ZooBaseModel.BirdInfo">
+              <MappingFragment StoreEntitySet="BirdInfo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="countryName" ColumnName="countryName" />
+                <ScalarProperty Name="firstDate" ColumnName="firstDate" />
+                <ScalarProperty Name="secondDate" ColumnName="secondDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ZooBaseModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="id_married_status" ColumnName="id_married_status" />
+                <ScalarProperty Name="id_wife_hasbend" ColumnName="id_wife_hasbend" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="ZooBaseModel.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_type_food" ColumnName="id_type_food" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Homes">
+            <EntityTypeMapping TypeName="ZooBaseModel.Home">
+              <MappingFragment StoreEntitySet="Home">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarriedStatus">
+            <EntityTypeMapping TypeName="ZooBaseModel.MarriedStatu">
+              <MappingFragment StoreEntitySet="MarriedStatus">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pets">
+            <EntityTypeMapping TypeName="ZooBaseModel.Pet">
+              <MappingFragment StoreEntitySet="Pets">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="id_sex" ColumnName="id_sex" />
+                <ScalarProperty Name="id_type" ColumnName="id_type" />
+                <ScalarProperty Name="id_food" ColumnName="id_food" />
+                <ScalarProperty Name="id_home" ColumnName="id_home" />
+                <ScalarProperty Name="id_smotritel" ColumnName="id_smotritel" />
+                <ScalarProperty Name="id_doctor" ColumnName="id_doctor" />
+                <ScalarProperty Name="id_info_bird" ColumnName="id_info_bird" />
+                <ScalarProperty Name="id_info_reptile" ColumnName="id_info_reptile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReptileInfoes">
+            <EntityTypeMapping TypeName="ZooBaseModel.ReptileInfo">
+              <MappingFragment StoreEntitySet="ReptileInfo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="normalTemperature" ColumnName="normalTemperature" />
+                <ScalarProperty Name="firstDate" ColumnName="firstDate" />
+                <ScalarProperty Name="secondDate" ColumnName="secondDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ZooBaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeFoods">
+            <EntityTypeMapping TypeName="ZooBaseModel.TypeFood">
+              <MappingFragment StoreEntitySet="TypeFood">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypePets">
+            <EntityTypeMapping TypeName="ZooBaseModel.TypePet">
+              <MappingFragment StoreEntitySet="TypePet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
