@@ -18,7 +18,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                             <TextBlock Width="250" Text="{Binding name}" FontSize="16" Margin="0 0 0 16"/>
-                            <Button Width="185" Tag="{Binding id}" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" x:Name="editPetBtn" Click="editPetBtn_Click" Content="Редактировать"/>
+                            <Button Width="170" Tag="{Binding id}" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" x:Name="editPetBtn" Click="editPetBtn_Click" Content="Редактировать"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -24,6 +24,7 @@ namespace ZooApp.Pages
         public SettingsPage()
         {
             InitializeComponent();
+            DataContext = new SettingsViewModel();
         }
 
         private void addNewFoodBtn_Click(object sender, RoutedEventArgs e)
