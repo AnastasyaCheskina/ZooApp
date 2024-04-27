@@ -20,7 +20,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                     <TextBlock Text="{Binding name}" Width="250" FontSize="16" Margin="0 0 0 16"/>
-                                    <Button Tag="{Binding id}" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
+                                    <Button x:Name="editFoodBtn" Click="editFoodBtn_Click" Tag="{Binding id}" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -34,7 +34,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                     <TextBlock Text="{Binding name}" Width="250" FontSize="16" Margin="0 0 0 16"/>
-                                    <Button Tag="{Binding id}" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
+                                    <Button Tag="{Binding id}" x:Name="editHomeBtn" Click="editHomeBtn_Click" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -48,7 +48,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                     <TextBlock Text="{Binding name}" Width="250" FontSize="16" Margin="0 0 0 16"/>
-                                    <Button Tag="{Binding id}" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
+                                    <Button x:Name="editTypeFoddBtn" Click="editTypeFoddBtn_Click" Tag="{Binding id}" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -62,7 +62,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                     <TextBlock Text="{Binding countryName}" Width="250" FontSize="16" Margin="0 0 0 16"/>
-                                    <Button Tag="{Binding id}" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
+                                    <Button x:Name="editBirdInfoBtn" Click="editBirdInfoBtn_Click" Tag="{Binding id}" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -76,7 +76,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                     <TextBlock Text="{Binding normalTemperature}" Width="250" FontSize="16" Margin="0 0 0 16"/>
-                                    <Button Tag="{Binding id}" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
+                                    <Button x:Name="editReptileInfoBtn" Click="editReptileInfoBtn_Click" Tag="{Binding id}" Width="170" Padding="20" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Редактировать"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZooApp.Model;
+using ZooApp.ViewModels;
 
 namespace ZooApp.Pages
 {
@@ -20,9 +22,37 @@ namespace ZooApp.Pages
     /// </summary>
     public partial class EditAndAddHomePage : Page
     {
+        EditAndAddHomeViewModel viewModel;
         public EditAndAddHomePage()
         {
             InitializeComponent();
+            viewModel = new EditAndAddHomeViewModel();
+            DataContext = viewModel;
+        }
+        public EditAndAddHomePage(Home home)
+        {
+            InitializeComponent();
+            viewModel = new EditAndAddHomeViewModel(home);
+            DataContext = viewModel;
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (viewModel.Home.name != null && viewModel.Home.name != string.Empty)
+            {
+                if (viewModel.IsVisible == false) ViewModelBase.database.Homes.Add(viewModel.Home);
+                ViewModelBase.database.SaveChanges();
+                MessageBox.Show("Информация успешно сохранена");
+            }
+            else MessageBox.Show("Заполнены не все обязательные данные");
+        }
+
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModelBase.database.Homes.Remove(viewModel.Home);
+            ViewModelBase.database.SaveChanges();
+            MessageBox.Show("Информация была удалена");
+            ViewModelBase.MainFrame.Navigate(new SettingsPage());
         }
     }
 }

@@ -142,8 +142,13 @@
     <Compile Include="Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EditAndAddBirdInfoViewModel.cs" />
     <Compile Include="ViewModels\EditAndAddEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\EditAndAddFoodViewModel.cs" />
+    <Compile Include="ViewModels\EditAndAddHomeViewModel.cs" />
     <Compile Include="ViewModels\EditAndAddPetViewModel.cs" />
+    <Compile Include="ViewModels\EditAndAddReptileInfoViewModel.cs" />
+    <Compile Include="ViewModels\EditAndAddTypeFoodViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\PetsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />

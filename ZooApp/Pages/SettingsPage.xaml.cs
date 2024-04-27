@@ -51,5 +51,61 @@ namespace ZooApp.Pages
         {
             ViewModelBase.MainFrame.Navigate(new EditAndAddReptileInfo());
         }
+
+
+        private void editHomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int id = Convert.ToInt32(button.Tag);
+            var obj = ViewModelBase.database.Homes.FirstOrDefault(x=>x.id == id);
+            if (obj != null)
+            {
+                ViewModelBase.MainFrame.Navigate(new EditAndAddHomePage(obj));
+            }
+        }
+
+        private void editFoodBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int id = Convert.ToInt32(button.Tag);
+            var obj = ViewModelBase.database.Foods.FirstOrDefault(x => x.id == id);
+            if (obj != null)
+            {
+                ViewModelBase.MainFrame.Navigate(new EditAndAddFoodPage(obj));
+            }
+        }
+
+        private void editTypeFoddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int id = Convert.ToInt32(button.Tag);
+            var obj = ViewModelBase.database.TypeFoods.FirstOrDefault(x => x.id == id);
+            if (obj != null)
+            {
+                ViewModelBase.MainFrame.Navigate(new EditAndAddTypeFoodPage(obj));
+            }
+        }
+
+        private void editBirdInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int id = Convert.ToInt32(button.Tag);
+            var obj = ViewModelBase.database.BirdInfoes.FirstOrDefault(x => x.id == id);
+            if (obj != null)
+            {
+                ViewModelBase.MainFrame.Navigate(new EditAndAddBirdInfo(obj));
+            }
+        }
+
+        private void editReptileInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int id = Convert.ToInt32(button.Tag);
+            var obj = ViewModelBase.database.ReptileInfoes.FirstOrDefault(x => x.id == id);
+            if (obj != null)
+            {
+                ViewModelBase.MainFrame.Navigate(new EditAndAddReptileInfo(obj));
+            }
+        }
     }
 }

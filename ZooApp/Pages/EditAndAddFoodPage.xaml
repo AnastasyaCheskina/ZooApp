@@ -11,18 +11,18 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical">
                 <GroupBox Header="Название рациона" FontSize="20" Margin="0 0 0 22">
-                    <TextBox MaxLines="1" FontSize="16" Padding="5"/>
+                    <TextBox Text="{Binding Food.name}" MaxLines="1" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Тип рациона" FontSize="20" Margin="0 0 0 22">
-                    <ComboBox FontSize="16" Padding="5"/>
+                    <ComboBox ItemsSource="{Binding Foods}" SelectedValue="{Binding IdSelected, Mode=TwoWay}" SelectedValuePath="id" DisplayMemberPath="name" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Template="{StaticResource NoMouseOverButtonTemplate}" Content="Сохранить" Grid.Column="0" Margin="5"/>
-                    <Button Template="{StaticResource NoMouseOverButtonTemplate}" Content="Удалить" Grid.Column="1" Margin="5"/>
+                    <Button x:Name="saveBtn" Click="saveBtn_Click" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Сохранить" Grid.Column="0" Margin="5"/>
+                    <Button IsEnabled="{Binding IsVisible}" x:Name="deleteBtn" Click="deleteBtn_Click" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Удалить" Grid.Column="1" Margin="5"/>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

@@ -12,21 +12,21 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical">
                 <GroupBox Header="Название страны зимовки" FontSize="20" Margin="0 0 0 22">
-                    <TextBox MaxLines="1" FontSize="16" Padding="5"/>
+                    <TextBox Text="{Binding Info.countryName}" MaxLines="1" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Дата улета" FontSize="20" Margin="0 0 0 22">
-                    <DatePicker FontSize="16" Padding="5"/>
+                    <DatePicker SelectedDate="{Binding Info.firstDate}" FontSize="16" Padding="5"/>
                 </GroupBox>
                 <GroupBox Header="Дата прилета" FontSize="20" Margin="0 0 0 22">
-                    <DatePicker FontSize="16" Padding="5"/>
+                    <DatePicker FontSize="16" SelectedDate="{Binding Info.secondDate}" Padding="5"/>
                 </GroupBox>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Template="{StaticResource NoMouseOverButtonTemplate}" Content="Сохранить" Grid.Column="0" Margin="5"/>
-                    <Button Template="{StaticResource NoMouseOverButtonTemplate}" Content="Удалить" Grid.Column="1" Margin="5"/>
+                    <Button x:Name="saveBtn" Click="saveBtn_Click" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Сохранить" Grid.Column="0" Margin="5"/>
+                    <Button IsEnabled="{Binding IsVisible}" x:Name="deleteBtn" Click="deleteBtn_Click" Template="{StaticResource NoMouseOverButtonTemplate}" Content="Удалить" Grid.Column="1" Margin="5"/>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

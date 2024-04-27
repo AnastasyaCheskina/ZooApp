@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZooApp.Model;
+using ZooApp.ViewModels;
 
 namespace ZooApp.Pages
 {
@@ -20,9 +22,37 @@ namespace ZooApp.Pages
     /// </summary>
     public partial class EditAndAddTypeFoodPage : Page
     {
+        EditAndAddTypeFoodViewModel viewModel;
         public EditAndAddTypeFoodPage()
         {
             InitializeComponent();
+            viewModel = new EditAndAddTypeFoodViewModel();
+            DataContext = viewModel;
+        }
+        public EditAndAddTypeFoodPage(TypeFood info)
+        {
+            InitializeComponent();
+            viewModel = new EditAndAddTypeFoodViewModel(info);
+            DataContext = viewModel;
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (viewModel.Info.name != null && viewModel.Info.name != string.Empty)
+            {
+                if (viewModel.IsVisible == false) ViewModelBase.database.TypeFoods.Add(viewModel.Info);
+                ViewModelBase.database.SaveChanges();
+                MessageBox.Show("Информация успешно сохранена");
+            }
+            else MessageBox.Show("Заполнены не все обязательные данные");
+        }
+
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModelBase.database.TypeFoods.Remove(viewModel.Info);
+            ViewModelBase.database.SaveChanges();
+            MessageBox.Show("Информация была удалена");
+            ViewModelBase.MainFrame.Navigate(new SettingsPage());
         }
     }
 }
